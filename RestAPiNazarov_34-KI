@@ -1,0 +1,14 @@
+import requests
+
+api_key = "02dd08ee9c78cce856829e0cdd023c2b"
+city = "Lubatin"
+url = f"https://api.openweathermap.org/data/2.5/weather?lat={49.951111}&lon={35.940753}&appid={api_key}"
+response = requests.get(url)
+
+if response.status_code == 200:
+    data = response.json()
+    temperature = data ["main"]["temp"]
+    description = data ["weather"][0]["description"]
+    print(f"The weather in {city} is {description} with {temperature} K.")
+else:
+    print("Error", response.status_code)
